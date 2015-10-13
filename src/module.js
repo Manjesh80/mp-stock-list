@@ -1,6 +1,12 @@
 import React from 'react';
+require('./styles/main.scss');
+import App from './app';
+
 
 React.render(
-  <h1>Example</h1>,
+  (<App pageTitle="Home Page">
+    <p>Hello, World!</p>
+  </App>),
   document.getElementById('content')
 );
+

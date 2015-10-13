@@ -27,7 +27,14 @@ module.exports = {
 
   module: {
     loaders: [
-      {test: /\.js?$/, exclude: /node_modules/, loader: 'babel?cacheDirectory'}
+      {
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        loader: 'babel?cacheDirectory'},
+      {
+        test: /\.scss$/,
+        loaders: ["style", "css", "sass"]
+      }
     ]
   },
 
@@ -37,14 +44,18 @@ module.exports = {
       inject: true,
       template: 'src/index.html'
     }),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ],
 
   debug: true,
   devtool: 'eval-cheap-module-source-map',
   devServer: {
     contentBase: './tmp',
-    historyApiFallback: true
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+    progress: true
   }
 
 }
